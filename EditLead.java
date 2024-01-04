@@ -1,4 +1,4 @@
-package week4.day1;
+package week4.day3;
 
 import java.time.Duration;
 
@@ -27,7 +27,27 @@ public class EditLead {
 		edgeDriver.findElement(By.xpath("//button[text()='Find Leads']")).click();
 		
 		Thread.sleep(5000);
+		
+		edgeDriver.findElement(By.xpath("//a[text()='10067']")).click();
+		String title = edgeDriver.getTitle();
+		System.out.println(title);
+		edgeDriver.findElement(By.xpath("//a[text()='Edit']")).click();
+		
+		String companyName = "Infosys";
+		edgeDriver.findElement(By.id("updateLeadForm_companyName")).sendKeys(companyName);
+		edgeDriver.findElement(By.xpath("//input[@value='Update']")).click();
+		
+		String verifyCompanyName = edgeDriver.findElement(By.id("viewLead_companyName_sp")).getText();
+
+		if (companyName.equals(verifyCompanyName)) {
+			System.out.println("verified");
+		}
+		else {
+			System.out.println("not verified");
+		}
 		edgeDriver.close();
+		System.out.println("Browser is closed");
+		
 	}
 
 }
